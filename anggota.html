@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anggota Tim - XI RPL 2 | SMKN 1 Garut</title>
+    
+    <!-- Google Fonts: Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap 5 CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Bootstrap Icons CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+
+    <style>
+        /* ==========================================================
+           COLOR PALETTE & GLOBAL VARIABLES (KONSISTEN DENGAN PROFIL.HTML)
+           ========================================================== */
+        :root {
+            --color-primary: #3368A0;     /* Deep Blue */
+            --color-secondary: #66A3BF;   /* Soft Blue */
+            --color-accent: #C8DFDB;      /* Soft Mint/Teal */
+            --color-bg: #F2EFE7;          /* Warm Cream Background */
+            --color-dark: #1E293B;        /* Slate Dark Text */
+            --color-muted: #64748B;       /* Muted Text */
+            --color-white: #FFFFFF;
+            --radius-sm: 12px;
+            --radius-md: 20px;
+            --radius-lg: 30px;
+            --shadow-soft: 0 10px 30px rgba(51, 104, 160, 0.08);
+            --shadow-hover: 0 18px 40px rgba(51, 104, 160, 0.16);
+        }
+
+        /* Base Typography & Background */
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--color-bg);
+            color: var(--color-dark);
+            overflow-x: hidden;
+        }
+
+        /* ==========================================================
+           NAVBAR STYLING
+           ========================================================== */
+        .custom-navbar {
+            background-color: rgba(242, 239, 231, 0.9);
+            backdrop-filter: blur(12px);
+            padding: 18px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .navbar-brand {
+            font-weight: 800;
+            font-size: 1.35rem;
+            color: var(--color-primary) !important;
+            letter-spacing: -0.5px;
+        }
+
+        .navbar-brand span {
+            color: var(--color-secondary);
+        }
+
+        .nav-link {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--color-dark) !important;
+            margin: 0 10px;
+            padding: 8px 16px !important;
+            border-radius: 50px;
+            transition: all 0.25s ease;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            background-color: var(--color-primary);
+            color: var(--color-white) !important;
+        }
+
+        .btn-nav-action {
+            background-color: var(--color-primary);
+            color: var(--color-white);
+            font-weight: 600;
+            border-radius: 50px;
+            padding: 10px 24px;
+            border: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(51, 104, 160, 0.2);
+        }
+
+        .btn-nav-action:hover {
+            background-color: #285382;
+            color: var(--color-white);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(51, 104, 160, 0.3);
+        }
+
+        /* ==========================================================
+           HEADER SECTION & BADGES
+           ========================================================== */
+        .section-badge {
+            display: inline-block;
+            background-color: var(--color-accent);
+            color: var(--color-primary);
+            font-weight: 700;
+            font-size: 0.825rem;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            padding: 6px 16px;
+            border-radius: 50px;
+            margin-bottom: 12px;
+        }
+
+        .page-header {
+            padding: 50px 0 30px;
+            text-align: center;
+        }
+
+        /* ==========================================================
+           MEMBER CARDS STYLING
+           ========================================================== */
+        .member-card {
+            background: var(--color-white);
+            border-radius: var(--radius-md);
+            border: 1px solid rgba(200, 223, 219, 0.5);
+            box-shadow: var(--shadow-soft);
+            transition: all 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
+            overflow: hidden;
+            position: relative;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .member-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--color-secondary);
+        }
+
+        .member-header-bg {
+            height: 100px;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            position: relative;
+        }
+
+        .member-avatar-wrapper {
+            width: 110px;
+            height: 110px;
+            margin: -55px auto 15px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .member-avatar {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid var(--color-white);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+            background-color: var(--color-accent);
+        }
+
+        .role-badge {
+            font-size: 0.78rem;
+            font-weight: 700;
+            padding: 6px 16px;
+            border-radius: 50px;
+            display: inline-block;
+            margin-bottom: 12px;
+        }
+
+        .role-pm {
+            background-color: #FEF3C7;
+            color: #D97706;
+        }
+
+        .role-dev {
+            background-color: #E0F2FE;
+            color: #0369A1;
+        }
+
+        .skill-chip {
+            background-color: var(--color-bg);
+            color: var(--color-dark);
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 5px 12px;
+            border-radius: 20px;
+            border: 1px solid rgba(100, 116, 139, 0.15);
+        }
+
+        .social-link {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background-color: var(--color-bg);
+            color: var(--color-primary);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.25s ease;
+        }
+
+        .social-link:hover {
+            background-color: var(--color-primary);
+            color: var(--color-white);
+            transform: translateY(-3px);
+        }
+
+        /* ==========================================================
+           WORKFLOW / COLLABORATION SECTION
+           ========================================================== */
+        .workflow-card {
+            background-color: var(--color-white);
+            border-radius: var(--radius-md);
+            padding: 30px;
+            box-shadow: var(--shadow-soft);
+            border: 1px solid rgba(200, 223, 219, 0.4);
+        }
+
+        .step-icon-number {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background-color: var(--color-accent);
+            color: var(--color-primary);
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        /* ==========================================================
+           FOOTER STYLING
+           ========================================================== */
+        footer {
+            background-color: var(--color-dark);
+            color: rgba(255, 255, 255, 0.8);
+            padding: 50px 0 25px;
+            border-top-left-radius: 40px;
+            border-top-right-radius: 40px;
+            margin-top: 80px;
+        }
+
+        footer h5 {
+            color: var(--color-white);
+            font-weight: 700;
+        }
+
+        footer a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        footer a:hover {
+            color: var(--color-accent);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg sticky-top custom-navbar">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center gap-2" href="profil.html">
+                <i class="bi bi-code-slash fs-3"></i>
+                <span>XI RPL 2</span> / DEV
+            </a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="profil.html">Profil Kelompok</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="anggota.html">Anggota Tim</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="kontak.html">Kontak Kami</a>
+                    </li>
+                </ul>
+                <div class="d-flex align-items-center gap-2 mt-3 mt-lg-0">
+                    <a href="kontak.html" class="btn btn-nav-action text-white text-decoration-none">
+                        Hubungi Kami <i class="bi bi-arrow-right ms-1"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HEADER SECTION -->
+    <section class="page-header">
+        <div class="container">
+            <span class="section-badge"><i class="bi bi-people-fill me-1"></i> STRUKTUR KELOMPOK</span>
+            <h1 class="display-5 fw-bold mb-3">Tim Di Balik Layar</h1>
+            <p class="text-secondary mx-auto" style="max-width: 650px; font-size: 1.05rem;">
+                Kolaborasi 4 calon talenta muda dari kelas <strong>XI RPL 2 SMKN 1 Garut</strong> yang saling melengkapi dalam merancang, mendesain, dan mengimplementasikan kode.
+            </p>
+        </div>
+    </section>
+
+    <!-- MEMBERS GRID SECTION -->
+    <section class="pb-5">
+        <div class="container">
+            <div class="row g-4 justify-content-center">
+                
+                <!-- MEMBER 1: NAYLA (PROJECT MANAGER) -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="member-card text-center p-0">
+                        <div class="member-header-bg"></div>
+                        <div class="member-avatar-wrapper">
+                            <img src="assets/nayla.jpeg" 
+                                 alt="Foto Nayla" 
+                                 class="member-avatar"
+                                 onerror="this.src='https://placehold.co/150x150/3368A0/FFFFFF?text=Nayla'">
+                        </div>
+                        <div class="p-3 pt-0 flex-grow-1 d-flex flex-direction-column flex-column justify-content-between">
+                            <div>
+                                <h4 class="fw-bold mb-1">Nayla</h4>
+                                <span class="role-badge role-pm">
+                                    <i class="bi bi-award-fill me-1"></i> Project Manager
+                                </span>
+                                <p class="text-secondary small mb-3">
+                                    Bertanggung jawab mengelola repository, menentukan pembagian tugas, melakukan code review, serta memeriksa dan melakukan merge pull request.
+                                </p>
+                                
+                                <!-- Skill Tags -->
+                                <div class="d-flex flex-wrap justify-content-center gap-1 mb-3">
+                                    <span class="skill-chip">Project Management</span>
+                                    <span class="skill-chip">Code Review</span>
+                                    <span class="skill-chip">Git & GitHub</span>
+                                </div>
+                            </div>
+
+                            <!-- Social Links -->
+                            <div class="pt-3 border-top d-flex justify-content-center gap-2">
+                                <a href="https://instagram.com/03nmqa/" target="_blank" class="social-link" title="Instagram"><i class="bi bi-instagram"></i></a>
+                                <a href="https://github.com/glyn173/" target="_blank" class="social-link" title="GitHub"><i class="bi bi-github"></i></a>
+                                <a href="mailto:dwimarya0@gmail.com" class="social-link" title="Email"><i class="bi bi-envelope"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MEMBER 2: DIEGO (DEVELOPER 1) -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="member-card text-center p-0">
+                        <div class="member-header-bg"></div>
+                        <div class="member-avatar-wrapper">
+                            <img src="assets/diego.jpeg" 
+                                 alt="Foto Diego" 
+                                 class="member-avatar"
+                                 onerror="this.src='https://placehold.co/150x150/3368A0/FFFFFF?text=Diego'">
+                        </div>
+                        <div class="p-3 pt-0 flex-grow-1 d-flex flex-direction-column flex-column justify-content-between">
+                            <div>
+                                <h4 class="fw-bold mb-1">Diego</h4>
+                                <span class="role-badge role-dev">
+                                    <i class="bi bi-code-slash me-1"></i> Developer 1
+                                </span>
+                                <p class="text-secondary small mb-3">
+                                    Bertanggung jawab membangun halaman profil, mencakup penyusunan hero section, deskripsi kelompok, visi-misi, beserta informasi detail lainnya.
+                                </p>
+
+                                <!-- Skill Tags -->
+                                <div class="d-flex flex-wrap justify-content-center gap-1 mb-3">
+                                    <span class="skill-chip">HTML</span>
+                                    <span class="skill-chip">Bootstrap</span>
+                                    <span class="skill-chip">UI Design</span>
+                                </div>
+                            </div>
+
+                            <!-- Social Links -->
+                            <div class="pt-3 border-top d-flex justify-content-center gap-2">
+                                <a href="https://www.instagram.com/digoabdlj01_" target="_blank" class="social-link" title="Instagram"><i class="bi bi-instagram"></i></a>
+                                <a href="https://github.com/DiegoAbdul01" target="_blank" class="social-link" title="GitHub"><i class="bi bi-github"></i></a>
+                                <a href="mailto:diego@smkn1garut.sch.id" class="social-link" title="Email"><i class="bi bi-envelope"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                        <!-- MEMBER 4: NIDA (DEVELOPER 3) -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="member-card text-center p-0">
+                        <div class="member-header-bg"></div>
+                        <div class="member-avatar-wrapper">
+                            <img src="assets/nida.jpeg" 
+                                 alt="Foto Nida" 
+                                 class="member-avatar"
+                                 onerror="this.src='https://placehold.co/150x150/3368A0/FFFFFF?text=Nida'">
+                        </div>
+                        <div class="p-3 pt-0 flex-grow-1 d-flex flex-direction-column flex-column justify-content-between">
+                            <div>
+                                <h4 class="fw-bold mb-1">Nida</h4>
+                                <span class="role-badge role-dev">
+                                    <i class="bi bi-palette-fill me-1"></i> Developer 2
+                                </span>
+                                <p class="text-secondary small mb-3">
+                                    Bertanggung jawab membangun halaman kontak, mencakup informasi singkat seperti email, instagram dan alamat sekolah.
+                                </p>
+
+                                <!-- Skill Tags -->
+                                <div class="d-flex flex-wrap justify-content-center gap-1 mb-3">
+                                    <span class="skill-chip">HTML</span>
+                                    <span class="skill-chip">Bootstrap</span>
+                                    <span class="skill-chip">UI Design</span>
+                                </div>
+                            </div>
+
+                            <!-- Social Links -->
+                            <div class="pt-3 border-top d-flex justify-content-center gap-2">
+                                <a href="https://instagram.com" target="_blank" class="social-link" title="Instagram"><i class="bi bi-instagram"></i></a>
+                                <a href="https://github.com/nida8804" target="_blank" class="social-link" title="GitHub"><i class="bi bi-github"></i></a>
+                                <a href="mailto:achamlbb63@gmail.com" class="social-link" title="Email"><i class="bi bi-envelope"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MEMBER 3: NAUFAL (DEVELOPER 2) -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="member-card text-center p-0">
+                        <div class="member-header-bg"></div>
+                        <div class="member-avatar-wrapper">
+                            <img src="assets/naul.jpeg" 
+                                 alt="Foto Naufal" 
+                                 class="member-avatar"
+                                 onerror="this.src='https://placehold.co/150x150/3368A0/FFFFFF?text=Naufal'">
+                        </div>
+                        <div class="p-3 pt-0 flex-grow-1 d-flex flex-direction-column flex-column justify-content-between">
+                            <div>
+                                <h4 class="fw-bold mb-1">Naufal</h4>
+                                <span class="role-badge role-dev">
+                                    <i class="bi bi-braces me-1"></i> Developer 3
+                                </span>
+                                <p class="text-secondary small mb-3">
+                                    Bertanggung jawab membangun halaman anggota, pembuatan kartu profil tim, deskripsi peran & tanggung jawab, hingga alur kerja.
+                                </p>
+
+                                <!-- Skill Tags -->
+                                <div class="d-flex flex-wrap justify-content-center gap-1 mb-3">
+                                    <span class="skill-chip">HTML</span>
+                                    <span class="skill-chip">Bootstrap</span>
+                                    <span class="skill-chip">UI Design</span>
+                                </div>
+                            </div>
+
+                            <!-- Social Links -->
+                            <div class="pt-3 border-top d-flex justify-content-center gap-2">
+                                <a href="https://instagram.com/n4ulaliim" target="_blank" class="social-link" title="Instagram"><i class="bi bi-instagram"></i></a>
+                                <a href="https://github.com/n4uul" target="_blank" class="social-link" title="GitHub"><i class="bi bi-github"></i></a>
+                                <a href="mailto:nauulalim@gmail.com" class="social-link" title="Email"><i class="bi bi-envelope"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </section>
+
+    <!-- WORKFLOW / SKILLS DIVISION SECTION -->
+    <section class="py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <span class="section-badge">ALUR KERJA</span>
+                <h2 class="fw-bold">Bagaimana Kami Bekerja Sama?</h2>
+                <p class="text-secondary">Setiap anggota memiliki kontribusi spesifik untuk menciptakan hasil akhir yang solid.</p>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3">
+                    <div class="workflow-card h-100">
+                        <div class="d-flex align-items-center gap-3 mb-3">
+                            <div class="step-icon-number">1</div>
+                            <h5 class="fw-bold mb-0">Perencanaan</h5>
+                        </div>
+                        <p class="text-secondary small mb-0">
+                            Membuat repository utama di GitHub dan menentukan pembagian tugas. Seluruh anggota kemudian melakukan clone repository ke komputer masing-masing.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-3">
+                    <div class="workflow-card h-100">
+                        <div class="d-flex align-items-center gap-3 mb-3">
+                            <div class="step-icon-number">2</div>
+                            <h5 class="fw-bold mb-0">Pengembangan Halaman</h5>
+                        </div>
+                        <p class="text-secondary small mb-0">
+                            Setiap developer membuat branch baru khusus untuk fiturnya. Anggota mulai mengodekan halaman masing-masing (Profil, Anggota, Kontak) secara terpisah.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-3">
+                    <div class="workflow-card h-100">
+                        <div class="d-flex align-items-center gap-3 mb-3">
+                            <div class="step-icon-number">3</div>
+                            <h5 class="fw-bold mb-0">Push & Code Review</h5>
+                        </div>
+                        <p class="text-secondary small mb-0">
+                            Setelah selesai, developer melakukan push ke branch mereka dan membuat Pull Request (PR). PM melakukan code review dan perbaikan jika diperlukan untuk memastikan kualitas kode.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-3">
+                    <div class="workflow-card h-100">
+                        <div class="d-flex align-items-center gap-3 mb-3">
+                            <div class="step-icon-number">4</div>
+                            <h5 class="fw-bold mb-0">Penggabungan & Sinkronisasi </h5>
+                        </div>
+                        <p class="text-secondary small mb-0">
+                            Setelah kode disetujui, Project Manager melakukan merge ke branch utama (main). Seluruh anggota kemudian melakukan pull/sinkronisasi agar semua file di komputer lokal berada di versi terbaru.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA BANNER SECTION -->
+    <section class="py-4">
+        <div class="container">
+            <div class="p-5 rounded-4 text-center text-white position-relative overflow-hidden shadow-lg" 
+                 style="background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));">
+                <h2 class="fw-bold mb-2">Punya Pertanyaan atau Ingin Berdiskusi?</h2>
+                <p class="opacity-90 mb-4 mx-auto" style="max-width: 550px;">
+                    Tim XI RPL 2 siap mendengarkan tanggapan dan masukan kalian seputar project ini.
+                </p>
+                <a href="kontak.html" class="btn btn-light rounded-pill px-4 py-2 fw-bold text-primary shadow-sm">
+                    Kirim Pesan ke Kami <i class="bi bi-arrow-right ms-1"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="row gy-4 mb-4">
+                <div class="col-lg-5">
+                    <a class="navbar-brand text-white fs-4 d-flex align-items-center gap-2 mb-3" href="#">
+                        <i class="bi bi-code-slash text-info"></i> XI RPL 2 / DEV
+                    </a>
+                    <p class="text-white-50 small pe-lg-4">
+                        Website profil kelompok resmi siswa Rekayasa Perangkat Lunak 2 SMKN 1 Garut. Dibuat untuk memenuhi tugas serta menampilkan kapabilitas tim.
+                    </p>
+                </div>
+                <div class="col-lg-3 col-6">
+                    <h5 class="mb-3">Navigasi</h5>
+                    <ul class="list-unstyled small d-flex flex-column gap-2">
+                        <li><a href="profil.html">Profil Kelompok</a></li>
+                        <li><a href="anggota.html">Anggota Tim</a></li>
+                        <li><a href="kontak.html">Kontak Sekolah</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-6">
+                    <h5 class="mb-3">Informasi Sekolah</h5>
+                    <p class="small text-white-50 mb-1"><i class="bi bi-building me-2"></i> SMKN 1 Garut</p>
+                    <p class="small text-white-50 mb-1"><i class="bi bi-bookmark-star me-2"></i> Rekayasa Perangkat Lunak</p>
+                    <p class="small text-white-50"><i class="bi bi-people me-2"></i> Anggota: Nayla, Diego, Nida, Naufal</p>
+                </div>
+            </div>
+            <hr class="border-secondary opacity-25">
+            <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center pt-2 small text-white-50">
+                <p class="mb-0">&copy; 2026 XI RPL 2 SMKN 1 Garut. All Rights Reserved.</p>
+                <div class="d-flex gap-3 mt-2 mt-sm-0">
+                    <a href="https://instagram.com" target="_blank" class="text-white-50 fs-5"><i class="bi bi-instagram"></i></a>
+                    <a href="mailto:info@smkn1garut.sch.id" class="text-white-50 fs-5"><i class="bi bi-envelope"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
