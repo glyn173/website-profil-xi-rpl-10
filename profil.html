@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil Kelompok - XI RPL 2 | SMKN 1 Garut</title>
+    
+    <!-- Google Fonts: Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap 5 CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Bootstrap Icons CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+
+    <style>
+        /* ==========================================================
+           COLOR PALETTE & GLOBAL VARIABLES
+           ========================================================== */
+        :root {
+            --color-primary: #3368A0;     /* Deep Blue */
+            --color-secondary: #66A3BF;   /* Soft Blue */
+            --color-accent: #C8DFDB;      /* Soft Mint/Teal */
+            --color-bg: #F2EFE7;          /* Warm Cream Background */
+            --color-dark: #1E293B;        /* Slate Dark Text */
+            --color-muted: #64748B;       /* Muted Text */
+            --color-white: #FFFFFF;
+            --radius-sm: 12px;
+            --radius-md: 20px;
+            --radius-lg: 30px;
+            --shadow-soft: 0 10px 30px rgba(51, 104, 160, 0.08);
+            --shadow-hover: 0 18px 40px rgba(51, 104, 160, 0.15);
+        }
+
+        /* Base Typography & Background */
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--color-bg);
+            color: var(--color-dark);
+            overflow-x: hidden;
+        }
+
+        /* ==========================================================
+           NAVBAR STYLING
+           ========================================================== */
+        .custom-navbar {
+            background-color: rgba(242, 239, 231, 0.9);
+            backdrop-filter: blur(12px);
+            padding: 18px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .navbar-brand {
+            font-weight: 800;
+            font-size: 1.35rem;
+            color: var(--color-primary) !important;
+            letter-spacing: -0.5px;
+        }
+
+        .navbar-brand span {
+            color: var(--color-secondary);
+        }
+
+        .nav-link {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--color-dark) !important;
+            margin: 0 10px;
+            padding: 8px 16px !important;
+            border-radius: 50px;
+            transition: all 0.25s ease;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            background-color: var(--color-primary);
+            color: var(--color-white) !important;
+        }
+
+        .btn-nav-action {
+            background-color: var(--color-primary);
+            color: var(--color-white);
+            font-weight: 600;
+            border-radius: 50px;
+            padding: 10px 24px;
+            border: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(51, 104, 160, 0.2);
+        }
+
+        .btn-nav-action:hover {
+            background-color: #285382;
+            color: var(--color-white);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(51, 104, 160, 0.3);
+        }
+
+        /* ==========================================================
+           DECORATIVE BADGES & CARDS
+           ========================================================== */
+        .section-badge {
+            display: inline-block;
+            background-color: var(--color-accent);
+            color: var(--color-primary);
+            font-weight: 700;
+            font-size: 0.825rem;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            padding: 6px 16px;
+            border-radius: 50px;
+            margin-bottom: 12px;
+        }
+
+        .card-custom {
+            background: var(--color-white);
+            border-radius: var(--radius-md);
+            border: 1px solid rgba(200, 223, 219, 0.4);
+            box-shadow: var(--shadow-soft);
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+
+        .card-custom:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        /* ==========================================================
+           HERO SECTION & DECORATION
+           ========================================================== */
+        .hero-section {
+            padding: 70px 0 90px;
+            position: relative;
+        }
+
+        /* Floating background elements from design reference */
+        .bg-shape-1 {
+            position: absolute;
+            width: 320px;
+            height: 320px;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--color-accent) 0%, rgba(242,239,237,0) 70%);
+            top: -50px;
+            right: 5%;
+            z-index: -1;
+            opacity: 0.6;
+        }
+
+        .hero-img-wrapper {
+            position: relative;
+            text-align: center;
+        }
+
+        .hero-main-card {
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            border-radius: 35px;
+            padding: 2.5rem;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-hover);
+        }
+
+        .hero-main-card::before {
+            content: '';
+            position: absolute;
+            top: -30%;
+            right: -20%;
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+        }
+
+        .floating-chip {
+            position: absolute;
+            background: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            color: var(--color-dark);
+            z-index: 2;
+            animation: floatAnim 3s ease-in-out infinite alternate;
+        }
+
+        .chip-1 { top: -15px; left: -10px; }
+        .chip-2 { bottom: -20px; right: 10px; animation-delay: 1.5s; }
+
+        @keyframes floatAnim {
+            0% { transform: translateY(0px); }
+            100% { transform: translateY(-10px); }
+        }
+
+        /* ==========================================================
+           BUTTON STYLES
+           ========================================================== */
+        .btn-primary-custom {
+            background-color: var(--color-primary);
+            color: white;
+            border-radius: 50px;
+            padding: 12px 30px;
+            font-weight: 600;
+            border: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(51, 104, 160, 0.25);
+        }
+
+        .btn-primary-custom:hover {
+            background-color: #275382;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 22px rgba(51, 104, 160, 0.35);
+        }
+
+        .btn-outline-custom {
+            border: 2px solid var(--color-primary);
+            color: var(--color-primary);
+            border-radius: 50px;
+            padding: 10px 28px;
+            font-weight: 600;
+            background: transparent;
+            transition: all 0.3s ease;
+        }
+
+        .btn-outline-custom:hover {
+            background-color: var(--color-primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* ==========================================================
+           STATS & FEATURES SECTION
+           ========================================================== */
+        .stat-box {
+            background: var(--color-white);
+            border-radius: var(--radius-sm);
+            padding: 20px;
+            text-align: center;
+            box-shadow: var(--shadow-soft);
+            border-bottom: 4px solid var(--color-secondary);
+        }
+
+        .stat-number {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--color-primary);
+            margin-bottom: 0;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--color-muted);
+            font-weight: 600;
+            margin-bottom: 0;
+        }
+
+        /* Icon wrapper */
+        .icon-circle {
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
+            background-color: var(--color-accent);
+            color: var(--color-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 18px;
+        }
+
+        /* ==========================================================
+           FOOTER
+           ========================================================== */
+        footer {
+            background-color: var(--color-dark);
+            color: rgba(255, 255, 255, 0.8);
+            padding: 50px 0 25px;
+            border-top-left-radius: 40px;
+            border-top-right-radius: 40px;
+            margin-top: 80px;
+        }
+
+        footer h5 {
+            color: var(--color-white);
+            font-weight: 700;
+        }
+
+        footer a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        footer a:hover {
+            color: var(--color-accent);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg sticky-top custom-navbar">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center gap-2" href="profil.html">
+                <i class="bi bi-code-slash fs-3"></i>
+                <span>XI RPL 2</span> / DEV
+            </a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="profil.html">Profil Kelompok</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="anggota.html">Anggota Tim</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="kontak.html">Kontak Kami</a>
+                    </li>
+                </ul>
+                <div class="d-flex align-items-center gap-2 mt-3 mt-lg-0">
+                    <a href="kontak.html" class="btn btn-nav-action text-white text-decoration-none">
+                        Hubungi Kami <i class="bi bi-arrow-right ms-1"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero-section">
+        <div class="bg-shape-1"></div>
+        <div class="container">
+            <div class="row align-items-center gy-5">
+                <div class="col-lg-6">
+                    <span class="section-badge"><i class="bi bi-mortarboard-fill me-1"></i> SMKN 1 GARUT</span>
+                    <h1 class="display-4 fw-bold lh-sm mb-3">
+                        Mengukir Inovasi Melalui Kode & Kreativitas
+                    </h1>
+                    <p class="lead text-secondary mb-4" style="font-size: 1.1rem; line-height: 1.7;">
+                        Selamat datang di website kelompok 10, jurusan pengembangan perangkat lunak dari kelas 
+                        <strong class="text-dark">XI RPL 2</strong>. Kami berdedikasi menciptakan produk digital yang kreatif.
+                    </p>
+                    
+                    <div class="d-flex flex-wrap gap-3 align-items-center mb-4">
+                        <a href="anggota.html" class="btn btn-primary-custom">
+                            Lihat Anggota Tim <i class="bi bi-people-fill ms-2"></i>
+                        </a>
+                        <a href="#tentang" class="btn btn-outline-custom">
+                            Eksplorasi Visi
+                        </a>
+                    </div>
+
+                    <!-- Quick Info Badges -->
+                    <div class="d-flex align-items-center gap-4 pt-2 border-top">
+                        <div class="d-flex align-items-center gap-2">
+                            <i class="bi bi-geo-alt-fill text-primary fs-5"></i>
+                            <small class="fw-semibold text-muted">SMKN 1 Garut</small>
+                        </div>
+                        <div class="d-flex align-items-center gap-2">
+                            <i class="bi bi-laptop-fill text-primary fs-5"></i>
+                            <small class="fw-semibold text-muted">Rekayasa Perangkat Lunak</small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Graphic/Visual Hero Card -->
+                <div class="col-lg-6">
+                    <div class="hero-img-wrapper ps-lg-4">
+                        <!-- Floating Chip 1 -->
+                        <div class="floating-chip chip-1">
+                            <i class="bi bi-check-circle-fill text-success fs-5"></i>
+                            <span>4 Developer Handal</span>
+                        </div>
+
+                        <!-- Floating Chip 2 -->
+                        <div class="floating-chip chip-2">
+                            <i class="bi bi-lightning-charge-fill text-warning fs-5"></i>
+                            <span>Web Dev, Desktop, Mobile</span>
+                        </div>
+
+                        <div class="hero-main-card text-start">
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <span class="badge bg-white text-dark rounded-pill px-3 py-2 fw-semibold">
+                                    Project Portfolio
+                                </span>
+                                <i class="bi bi-stars fs-3 text-warning"></i>
+                            </div>
+                            <h3 class="fw-bold mb-3">Tim Pengembangan Web XI RPL 2</h3>
+                            <p class="opacity-90 mb-4" style="font-size: 0.95rem;">
+                                Menggabungkan keahlian manajemen proyek, frontend design, dan rekayasa kode untuk menghasilkan website yang inovatif.
+                            </p>
+                            <div class="p-3 bg-white bg-opacity-10 rounded-3 d-flex justify-content-around text-center">
+                                <div>
+                                    <h5 class="fw-bold mb-0">XI</h5>
+                                    <small class="opacity-75">Tingkat</small>
+                                </div>
+                                <div class="border-start border-white border-opacity-25"></div>
+                                <div>
+                                    <h5 class="fw-bold mb-0">RPL 2</h5>
+                                    <small class="opacity-75">Kelas</small>
+                                </div>
+                                <div class="border-start border-white border-opacity-25"></div>
+                                <div>
+                                    <h5 class="fw-bold mb-0">2026</h5>
+                                    <small class="opacity-75">Tahun</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- STATS COUNTER BAR -->
+    <section class="py-4">
+        <div class="container">
+            <div class="row g-3">
+                <div class="col-6 col-md-3">
+                    <div class="stat-box">
+                        <p class="stat-number">4</p>
+                        <p class="stat-label">Anggota Tim</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="stat-box">
+                        <p class="stat-number">100%</p>
+                        <p class="stat-label">Komitmen Kelompok</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="stat-box">
+                        <p class="stat-number">RPL</p>
+                        <p class="stat-label">Program Keahlian</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="stat-box">
+                        <p class="stat-number">Garut</p>
+                        <p class="stat-label">Lokasi Sekolah</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TENTANG KELOMPOK SECTION -->
+    <section id="tentang" class="py-5">
+        <div class="container py-4">
+            <div class="row align-items-center gy-4">
+                <div class="col-lg-5">
+                    <span class="section-badge">DESKRIPSI KELOMPOK</span>
+                    <h2 class="fw-bold mb-3">Siapa Kami?</h2>
+                    <p class="text-secondary leading-relaxed">
+                        Kami adalah kelompok kolaboratif siswa kelas <strong>XI RPL 2 SMKN 1 Garut</strong> 
+                        yang berfokus pada pendalaman keahlian Rekayasa Perangkat Lunak. 
+                    </p>
+                    <p class="text-secondary leading-relaxed">
+                        Berbekal kombinasi logika pemrograman, kreativitas antarmuka (UI/UX), dan semangat belajar yang tinggi, 
+                        kami bekerja sama dalam merancang dan merangkai berbagai solusi berbasis web yang responsif, modern, dan fungsional.
+                    </p>
+                </div>
+                <div class="col-lg-7">
+                    <div class="row g-3">
+                        <div class="col-sm-6">
+                            <div class="card-custom p-4">
+                                <div class="icon-circle">
+                                    <i class="bi bi-cpu"></i>
+                                </div>
+                                <h5 class="fw-bold">Teknologi Modern</h5>
+                                <p class="text-secondary small mb-0">
+                                    Memanfaatkan HTML, CSS, JavaScript, Laravel, dan lain sebagainya.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="card-custom p-4">
+                                <div class="icon-circle">
+                                    <i class="bi bi-people"></i>
+                                </div>
+                                <h5 class="fw-bold">Kerja Sama Tim</h5>
+                                <p class="text-secondary small mb-0">
+                                    Sinergi antara Project Manager dan Developer menjamin setiap tugas selesai dengan efisien.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="card-custom p-4">
+                                <div class="icon-circle">
+                                    <i class="bi bi-lightbulb"></i>
+                                </div>
+                                <h5 class="fw-bold">Problem Solving</h5>
+                                <p class="text-secondary small mb-0">
+                                    Antusias menghadapi tantangan baru dan selalu berupaya mencari solusi pemrograman terbaik.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="card-custom p-4">
+                                <div class="icon-circle">
+                                    <i class="bi bi-award"></i>
+                                </div>
+                                <h5 class="fw-bold">Standar Mutu</h5>
+                                <p class="text-secondary small mb-0">
+                                    Menerapkan praktik penulisan kode yang rapi, terstruktur, dan mudah dipelihara.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- VISI & MISI SECTION -->
+    <section class="py-5 bg-white rounded-4 shadow-sm my-4">
+        <div class="container py-3">
+            <div class="text-center max-w-700 mx-auto mb-5">
+                <span class="section-badge">PRINSIP & LANDASAN</span>
+                <h2 class="fw-bold">Visi & Misi Kelompok</h2>
+                <p class="text-secondary">Cita-cita dan komitmen yang menjadi kompas dalam setiap pengerjaan project kami.</p>
+            </div>
+
+            <div class="row g-4 justify-content-center">
+                <!-- Visi Card -->
+                <div class="col-lg-6">
+                    <div class="p-4 p-md-5 rounded-4 h-100" style="background-color: var(--color-bg); border-left: 6px solid var(--color-primary);">
+                        <div class="d-flex align-items-center gap-3 mb-3">
+                            <div class="p-3 bg-white rounded-circle text-primary fs-3 shadow-sm">
+                                <i class="bi bi-compass"></i>
+                            </div>
+                            <h3 class="fw-bold mb-0" style="color: var(--color-primary);">Visi Kami</h3>
+                        </div>
+                        <p class="fs-5 fw-medium text-dark lh-base mt-3 mb-0">
+                            "Menjadi tim pengembang perangkat lunak tingkat pelajar yang kompeten, kreatif, serta mampu menghasilkan aplikasi berstandar industri dengan mengedepankan kualitas dan estetika modern."
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Misi Card -->
+                <div class="col-lg-6">
+                    <div class="p-4 p-md-5 rounded-4 h-100" style="background-color: #EAF3F7; border-left: 6px solid var(--color-secondary);">
+                        <div class="d-flex align-items-center gap-3 mb-3">
+                            <div class="p-3 bg-white rounded-circle text-info fs-3 shadow-sm">
+                                <i class="bi bi-rocket-takeoff"></i>
+                            </div>
+                            <h3 class="fw-bold mb-0" style="color: var(--color-primary);">Misi Kami</h3>
+                        </div>
+                        <ul class="list-unstyled d-flex flex-column gap-3 mb-0 mt-3">
+                            <li class="d-flex align-items-start gap-2">
+                                <i class="bi bi-check-circle-fill text-primary mt-1"></i>
+                                <span>Mengasah keterampilan koding dan pemahaman alur sistem secara berkelanjutan.</span>
+                            </li>
+                            <li class="d-flex align-items-start gap-2">
+                                <i class="bi bi-check-circle-fill text-primary mt-1"></i>
+                                <span>Membangun komunikasi tim yang solid, terbuka, dan tanggap terhadap perkembangan baru.</span>
+                            </li>
+                            <li class="d-flex align-items-start gap-2">
+                                <i class="bi bi-check-circle-fill text-primary mt-1"></i>
+                                <span>Menghasilkan produk perangkat lunak yang solutif untuk lingkungan sekolah dan masyarakat.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TECH STACK SECTION -->
+    <section class="py-5">
+        <div class="container text-center">
+            <span class="section-badge">TEKNOLOGI PENDUKUNG</span>
+            <h2 class="fw-bold mb-4">Tech Stack yang Digunakan Pada Website Ini</h2>
+            
+            <div class="d-flex flex-wrap justify-content-center gap-3">
+                <div class="bg-white px-4 py-3 rounded-pill shadow-sm d-flex align-items-center gap-2 border">
+                    <i class="bi bi-filetype-html fs-4 text-danger"></i>
+                    <span class="fw-bold">HTML</span>
+                </div>
+                <div class="bg-white px-4 py-3 rounded-pill shadow-sm d-flex align-items-center gap-2 border">
+                    <i class="bi bi-filetype-css fs-4 text-primary"></i>
+                    <span class="fw-bold">CSS</span>
+                </div>
+                <div class="bg-white px-4 py-3 rounded-pill shadow-sm d-flex align-items-center gap-2 border">
+                    <i class="bi bi-filetype-js fs-4 text-warning"></i>
+                    <span class="fw-bold">JavaScript</span>
+                </div>
+                <div class="bg-white px-4 py-3 rounded-pill shadow-sm d-flex align-items-center gap-2 border">
+                    <i class="bi bi-bootstrap-fill fs-4 text-purple" style="color: #7952b3;"></i>
+                    <span class="fw-bold">Bootstrap 5</span>
+                </div>
+                <div class="bg-white px-4 py-3 rounded-pill shadow-sm d-flex align-items-center gap-2 border">
+                    <i class="bi bi-code-square fs-4 text-info"></i>
+                    <span class="fw-bold">VS Code</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="row gy-4 mb-4">
+                <div class="col-lg-5">
+                    <a class="navbar-brand text-white fs-4 d-flex align-items-center gap-2 mb-3" href="#">
+                        <i class="bi bi-code-slash text-info"></i> XI RPL 2 / DEV
+                    </a>
+                    <p class="text-white-50 small pe-lg-4">
+                        Website profil kelompok resmi siswa Rekayasa Perangkat Lunak 2 SMKN 1 Garut. Dibuat untuk memenuhi tugas serta menampilkan kapabilitas tim.
+                    </p>
+                </div>
+                <div class="col-lg-3 col-6">
+                    <h5 class="mb-3">Navigasi</h5>
+                    <ul class="list-unstyled small d-flex flex-column gap-2">
+                        <li><a href="profil.html">Profil Kelompok</a></li>
+                        <li><a href="anggota.html">Anggota Tim</a></li>
+                        <li><a href="kontak.html">Kontak Sekolah</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-6">
+                    <h5 class="mb-3">Informasi Sekolah</h5>
+                    <p class="small text-white-50 mb-1"><i class="bi bi-building me-2"></i> SMKN 1 Garut</p>
+                    <p class="small text-white-50 mb-1"><i class="bi bi-bookmark-star me-2"></i> Rekayasa Perangkat Lunak</p>
+                    <p class="small text-white-50"><i class="bi bi-people me-2"></i> Anggota: Nayla, Diego, Nida, Naufal</p>
+                </div>
+            </div>
+            <hr class="border-secondary opacity-25">
+            <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center pt-2 small text-white-50">
+                <p class="mb-0">&copy; 2026 XI RPL 2 SMKN 1 Garut. All Rights Reserved.</p>
+                <div class="d-flex gap-3 mt-2 mt-sm-0">
+                    <a href="https://instagram.com" target="_blank" class="text-white-50 fs-5"><i class="bi bi-instagram"></i></a>
+                    <a href="mailto:info@smkn1garut.sch.id" class="text-white-50 fs-5"><i class="bi bi-envelope"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
